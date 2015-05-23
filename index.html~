@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8" />
+<title></title>
+
+<link rel="stylesheet" href="style.css">
+
+<!--[if IE]> 
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+	<header id="main-header">
+		<section id="block-twitter">
+			<p class="tweet-text">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.<span class="tweet-time">21 minutes ago via Twitter</span></p>
+		</section>
+		<section id="block-title">
+			<h1>Ferris Bueller</h1>
+		</section>
+	</header>
+	<div id="main-content">
+		<section id="content">
+			<section class="one-col">
+				<h3>E ai,</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <p>
+				<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</section>
+			<section class="two-col">
+				<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est culpa qui officia deserunt mollit anim id estmollit anim id est enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex.</p>
+			
+			</section>
+			<section class="one-col">
+				<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</section>
+			<aside id="form">
+				<form action="template_submit" method="get">
+					<input id="name" name="name" type="text" class="textfield nome" placeholder="Escreva seu nome" >
+					<input id="email" name="email" type="text" class="textfield email" placeholder="Email">
+					<textarea id="message" name="message" type="textarea" placeholder="Mensagem"></textarea>
+					<input type="submit" value="Enviar" class="submit">
+				</form>
+			</aside>
+		</section>
+		<section id="portfolio">
+			<figure>
+				<a href="#" class="link-thumbs"><img src="images/thumb-1.png" alt="Nome do projeto"></a>
+				<a href="#" class="link-thumbs"><img src="images/thumb-2.png" alt="Nome do projeto"></a>
+				<a href="#" class="link-thumbs"><img src="images/thumb-3.png" alt="Nome do projeto"></a>
+		   		<a href="#" class="link-thumbs"><img src="images/thumb-4.png" alt="Nome do projeto"></a>
+				<a href="#" class="link-thumbs"><img src="images/thumb-5.png" alt="Nome do projeto"></a>
+				<a href="#" class="link-thumbs"><img src="images/thumb-6.png" alt="Nome do projeto"></a>
+			</figure>
+			<video controls width="380" height="210" poster="images/placeholder.jpg">
+				<source src="video/video-1.mp4" type="video/mp4"> 
+				<object type="application/x-shockwave-flash" width="380" height="268" data="player.swf?file=video/video-1.mp4">
+					<param name="movie" value="player.swf?file=video/video-1.mp4">
+				</object> 
+			</video>
+		</section>
+	</div>
+	<footer>
+		<p>Prova Desenvolvimento Web Design baseado na página de Fabiano Meneghetti<br/>
+		</p>
+	</footer>
+</body>
+
+</html>

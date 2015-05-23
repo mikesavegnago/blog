@@ -1,0 +1,55 @@
+<?php
+
+namespace Admin\Controller;
+
+use Zend\View\Model\ViewModel;
+use Zend\Mvc\Controller\AbstractActionController;
+use \Admin\Form\Usuario as UsuarioForm;
+use \Admin\Entity\Usuario as Usuario;
+
+/**
+ * Controlador que gerencia os usuários
+ *
+ * @category Admin
+ * @package Controller
+ * @author  Ana Paula Binda <anapaulasif@unochapeco.edu.br>
+ */
+class UsuariosController extends AbstractActionController
+{
+
+    /**
+     * Exibe os usuários
+     * @return void
+     */
+    public function indexAction()
+    {
+    	
+    		$em = new 
+        
+        return new ViewModel(
+          
+        );
+    }
+
+    /**
+     * Cria ou edita um usuário
+     * @return void
+     */
+    public function saveAction()
+    {
+                return new ViewModel(
+                    );
+    }
+
+     
+
+    /**
+     * Exclui um usuário
+     * @return void
+     */
+    public function deleteAction()
+    {
+       
+    }
+
+}
