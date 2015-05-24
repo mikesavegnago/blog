@@ -10,24 +10,33 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Admin\Form\Usuario as UsuarioForm
 
 class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-        //$em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        //$post = $em->getRepository('\Main\Entity\Post')->findAll();
-        
-    return new ViewModel(
-                array(
-            'post' => $post
+  //      $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+ //       $post = $em->getRepository('\Admin\Entity\Post')->findAll();
+//       var_dump($post);exit;
+
+        return new ViewModel(
+            array(
+            //'post' => $post
                 )
-        );
+            );
         
     }
-	
+
+
+    public function saveAction()
+    {
+
+    }
+
+
     public function paginaAction()
-	{
-		return new ViewModel();
-	}		
+    {
+      return new ViewModel();
+  }		
 }

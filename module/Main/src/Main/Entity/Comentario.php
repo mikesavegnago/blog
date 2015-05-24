@@ -43,7 +43,7 @@ class Comentario
     protected $comentario;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\Main\Model\Comentario")
+     * @ORM\ManyToOne(targetEntity="Comentario")
      * @ORM\JoinColumn(name="id_post", referencedColumnName="id")
      *
      * @var \Admin\Model\Post
