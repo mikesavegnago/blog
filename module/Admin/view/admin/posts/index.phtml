@@ -1,0 +1,24 @@
+<div class="wrapper">
+    <form class="form-signin" >       
+        <h2 class="form-signin-heading">Cadastro de usuário</h2>
+        <input type="text" class="form-control" name="nome" placeholder="Nome Completo" required autofocus="" />
+        <br>
+        <input type="text" class="form-control" name="email" placeholder="E-mail" required />
+        <br>
+        <input type="text" class="form-control" name="data_nasc" id="data_nasc" placeholder="Data de Nascimento" required />
+        <br>
+        <input type="text" class="form-control" name="login" placeholder="Login" required />
+        <br>
+        <input type="password" class="form-control" name="senha" placeholder="Senha" required />
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="location.href='/admin/contatos/save'">Cadastrar</button>  
+        <br>
+        Já possuí cadastro? <a href="/">Acesse o blog!</a>
+    </form>
+</div>
+<script type="text/javascript" src="/js/maskedinput.min.js"></script>
+<script>
+jQuery(function($){
+       $("#data_nasc").mask("99/99/9999");
+});
+</script>

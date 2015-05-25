@@ -24,7 +24,8 @@ class ComentariosController extends AbstractActionController
     public function indexAction()
     {
         $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $comentarios = $em->getRepository('\Admin\Entity\Comentario')->findAll();
+        $comentarios = $em->getRepository('\Main\Entity\Comentario')->findAll();
+        var_dump($comentarios);exit;
 
         return new ViewModel(
             array(
@@ -40,7 +41,7 @@ class ComentariosController extends AbstractActionController
     public function saveAction()
      {
         $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $form = new ComentairioForm($em);
+        $form = new ComentarioForm($em);
         $request = $this->getRequest();
 
         if ($request->isPost()) {
@@ -53,7 +54,7 @@ class ComentariosController extends AbstractActionController
                 $values = $form->getData();
 
                 if ( (int) $values['id'] > 0)
-                    $comentario = $em->find('\Admin\Entity\Comentario', $values['id']);
+                    $comentario = $em->find('\Main\Entity\Comentario', $values['id']);
 
                 $comentario->setEmail($values['email']);
                 $comentario->setComentario($values['comentario']);
@@ -61,7 +62,7 @@ class ComentariosController extends AbstractActionController
                 
                 // nao sei bem certo como funciona para salvar os posts
                 foreach ($values['post'] as $pos) {
-                    $posts = $em->find('\Admin\Entity\Post', $pos);
+                    $posts = $em->find('\AMain\Entity\Post', $pos);
                     $comentario->getPost()->add($posts);
                 }
 
@@ -74,14 +75,14 @@ class ComentariosController extends AbstractActionController
                     $this->flashMessenger()->addErrorMessage('Erro ao armazenar comentario');
                 }
 
-                return $this->redirect()->toUrl('/admin/comentarios');
+                return $this->redirect()->toUrl('/main/comentarios');
             }
         }
 
         $id = $this->params()->fromRoute('id', 0);
 
         if ((int) $id > 0) {
-            $comentario = $em->find('\Admin\Entity\Comentario', $id);
+            $comentario = $em->find('\Main\Entity\Comentario', $id);
             $form->bind($comentario);
         }
 
@@ -102,7 +103,7 @@ class ComentariosController extends AbstractActionController
         $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
 
         if ($id > 0) {
-            $comentario = $em->find('\Admin\Entity\Comentario', $id);
+            $comentario = $em->find('\Main\Entity\Comentario', $id);
             $em->remove($comentario);
 
             try {
@@ -113,7 +114,7 @@ class ComentariosController extends AbstractActionController
             }
         }
 
-        return $this->redirect()->toUrl('/admin/usuarios');
+        return $this->redirect()->toUrl('/main/usuarios');
     }
 
 }

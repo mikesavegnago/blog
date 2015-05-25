@@ -9,12 +9,12 @@
  * 
  */
 
-namespace Admin\Form;
+namespace Main\Form;
 
 use \Zend\Form\Form as Form;
 use \Zend\Form\Element;
 
-class Usuario extends Form
+class Comentario extends Form
 {
 	
 	public function __construct(\Doctrine\ORM\EntityManager $em)

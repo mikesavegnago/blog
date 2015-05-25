@@ -24,8 +24,8 @@ class PostsController extends AbstractActionController
     public function indexAction()
     {
 		$em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $posts = $em->getRepository('\Admin\Entity\Posts')->findAll();
-        var_dump("vardumpi nos post estou aqui em postsController"+$posts);exit;
+        $posts = $em->getRepository('\Admin\Entity\Post')->findAll();
+        var_dump($posts);exit;
         return new ViewModel(
             array(
                 'posts' => $posts

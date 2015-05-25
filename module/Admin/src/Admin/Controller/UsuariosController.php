@@ -24,8 +24,8 @@ class UsuariosController extends AbstractActionController
     public function indexAction()
      {
         $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $usuarios = $em->getRepository('\Admin\Entity\Usuarios')->findAll();
-        var_dump("vardumpi nos usuario estou aqui em UsuariosController"+$usuarios);exit;
+        $usuarios = $em->getRepository('\Admin\Entity\Usuario')->findAll();
+        var_dump($usuarios);exit;
         return new ViewModel(
             array(
                 'usuarios' => $usuarios
@@ -41,7 +41,7 @@ class UsuariosController extends AbstractActionController
     {
         $request = $this->getRequest();
         $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $form = new UsuariosForm($em);
+        $form = new UsuarioForm($em);
         if ($request->isPost()) {
             $values = $request->getPost();
             var_dump($values);exit;

@@ -26,6 +26,7 @@ class Usuario
      * @var integer
      */
     protected $id;
+    
     protected $inputFilter;
 
     /**

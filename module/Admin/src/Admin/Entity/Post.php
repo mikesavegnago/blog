@@ -26,6 +26,7 @@ class Post
      * @var integer
      */
     protected $id;
+    
     protected $inputFilter;
 
     /**

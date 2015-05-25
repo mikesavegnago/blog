@@ -5,6 +5,7 @@ return array(
     'controllers' => array( //add module controllers
         'invokables' => array(
             'Main\Controller\Index' => 'Main\Controller\IndexController',
+            'Main\Controller\Comentarios' => 'Main\Controller\ComentariosController',
         ),
     ),
     //Configuração doctrine

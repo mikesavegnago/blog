@@ -15,10 +15,11 @@ use Zend\Form\Element;
 
 class Post extends Form {
 
-    public function __construct(\Doctrine\ORM\EntityManager $em) {
+    public function __construct(\Doctrine\ORM\EntityManager $em) 
+    {
         parent::__construct('post');
-        $this->setAtribute('action', '');
-        $this->setAtribute('method', 'post');
+        $this->setAttribute('action','');
+        $this->setAttribute('method', 'post');
 
         $this->add(
                 array(
@@ -65,7 +66,7 @@ class Post extends Form {
 
         $this->add(array(
             'name' => 'ativo',
-            'type' => 'creckbox',
+            'type' => 'checkbox',
             'options' => array(
                 'label' => 'Ativo:'
             ),

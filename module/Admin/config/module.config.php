@@ -5,6 +5,8 @@ return array(
     'controllers' => array( //add module controllers
         'invokables' => array(
             'Admin\Controller\Usuarios' => 'Admin\Controller\UsuariosController',
+            'Admin\Controller\Posts' => 'Admin\Controller\PostsController',
+            'Admin\Controller\Index' => 'Admin\Controller\IndexController',
         ),
     ),
     //Configuração doctrine
