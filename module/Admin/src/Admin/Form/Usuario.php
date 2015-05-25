@@ -36,7 +36,8 @@ class Usuario extends Form
 				),
 			'attributes' => array(
 				'placeholder' => 'Informe o nome',
-				'id' => 'nome'
+				'id' => 'nome',
+                                'class' => 'form-control'
 				)
 			));                
 		
@@ -48,7 +49,8 @@ class Usuario extends Form
 				),
 			'attributes' => array(
 				'placeholder' => 'Informe o e-mail',
-				'id' => 'email'
+				'id' => 'email',
+                                'class' => 'form-control'
 				)
 			));
 			
@@ -60,7 +62,8 @@ class Usuario extends Form
 				),
 			'attributes' => array(
 				'placeholder' => 'Informe sua data de nascimento',
-				'id' => 'data_nasc'
+				'id' => 'data_nasc',
+                                'class' => 'form-control'
 				)
 			));
                 
@@ -72,7 +75,8 @@ class Usuario extends Form
 				),
 			'attributes' => array(
 				'placeholder' => 'Informe o perfil',
-				'id' => 'perfil'
+				'id' => 'perfil',
+                                'class' => 'form-control'
 				)
 			));                
 	
@@ -84,7 +88,8 @@ class Usuario extends Form
 				),
 			'attributes' => array(
 				'placeholder' => 'Informe o Login',
-				'id' => 'login'
+				'id' => 'login',
+                                'class' => 'form-control'
 				)
 			));                
 				
@@ -97,7 +102,8 @@ class Usuario extends Form
 				),
 			'attributes' => array(
 				'placeholder' => 'Informe senha',
-				'id' => 'senha'
+				'id' => 'senha',
+                                'class' => 'form-control'
 				)
 			));
                 
@@ -118,7 +124,8 @@ class Usuario extends Form
 			'name' => 'submit',
 			'type' => 'submit',
 			'attributes' => array(
-				'value' => 'Salvar'
+				'value' => 'Salvar',
+                                'class' => 'btn btn-primary'                            
 				)
 			));
 		

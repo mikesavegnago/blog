@@ -1,16 +1,16 @@
 <?php
 /**
-**
+ *
  *  @author Paulo Cella <paulocella@unochapeco.edu.br>
  * 
  * 
  */
 
-namespace Application\Controller;
+namespace Admin\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Admin\Form\Usuario as UsuarioForm
+use Admin\Form\Usuario as UsuarioForm;
 
 class IndexController extends AbstractActionController
 {

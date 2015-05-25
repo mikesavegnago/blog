@@ -36,7 +36,8 @@ class Post extends Form {
             ),
             'attributes' => array(
                 'placeholder' => 'Informe o titulo do Post',
-                'id' => 'titulo'
+                'id' => 'titulo',
+                'class' => 'form-control'
             )
         ));
 
@@ -48,19 +49,21 @@ class Post extends Form {
             ),
             'attributes' => array(
                 'placeholder' => 'Informe o corpo do post',
-                'id' => 'minText'
+                'id' => 'minText',
+                'class' => 'form-control'
             )
         ));
 
         $this->add(array(
             'name' => 'postComp',
-            'type' => 'text',
+            'type' => 'textarea',
             'options' => array(
-                'label' => 'PostComp:'
+                'label' => 'Post Completo:'
             ),
-            'attribtes' => array(
-                'placeholder' => 'Informe post Comp',
-                'id' => 'postComp'
+            'attributes' => array(
+                'placeholder' => 'Informe post Completo',
+                'id' => 'postComp',
+                'class' => 'form-control'
             )
         ));
 
@@ -68,7 +71,7 @@ class Post extends Form {
             'name' => 'ativo',
             'type' => 'checkbox',
             'options' => array(
-                'label' => 'Ativo:'
+                'label' => 'Ativo'
             ),
             'attributes' => array(
                 'placeholder' => 'Informe se o usuario é ativo',
@@ -81,7 +84,8 @@ class Post extends Form {
             'name' => 'submit',
             'type' => 'submit',
             'attributes' => array(
-                'value' => 'Salvar'
+                'value' => 'Salvar',
+                'class' => 'btn btn-primary'
                 )
             ));
     }

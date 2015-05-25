@@ -39,16 +39,17 @@ class UsuariosController extends AbstractActionController
      */
     public function saveAction()
     {
-        $request = $this->getRequest();
-        $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $form = new UsuarioForm($em);
+        $request = $this->getRequest();
+        
         if ($request->isPost()) {
             $values = $request->getPost();
-            var_dump($values);exit;
             $usuario = new Usuario();
-            $filters = $usuario->getInputFilter();
-            $form->setInputFilter($filters);
+            $form->setInputFilter($usuario->getInputFilter());
             $form->setData($values);
+            var_dump($form->isValid()); exit;
+            
             if($form->isValid()) {
                 $values = $form->getData();
                 if ((int)$values['id'] > 0)
