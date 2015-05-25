@@ -49,7 +49,6 @@ class PostsController extends AbstractActionController
             $values = $request->getPost();
             $form->setInputFilter($post->getInputFilter());
             $form->setData($values);
-            var_dump($form);
 
             if ($form->isValid()) {             
                 $values = $form->getData();
@@ -63,14 +62,15 @@ class PostsController extends AbstractActionController
                 $post->setPostComp($values['postComp']);
                 $post->setAtivo($values['ativo']);
                 $post->setUsuario($values['usuario']);
-                //var_dump($post);exit;
+
+                var_dump($post);exit;
                 $em->persist($post);
 
                 try {
                     $em->flush();
-                    $this->flashMessenger()->addSuccessMessage('Usuário armazenado com sucesso');
+                    $this->flashMessenger()->addSuccessMessage('Post armazenado com sucesso');
                 } catch (\Exception $e) {
-                    $this->flashMessenger()->addErrorMessage('Erro ao armazenar usuário');
+                    $this->flashMessenger()->addErrorMessage('Erro ao armazenar post');
                 }
 
                 return $this->redirect()->toUrl('/admin/post');

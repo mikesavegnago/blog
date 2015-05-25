@@ -25,7 +25,7 @@ class UsuariosController extends AbstractActionController
      {
         $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $usuarios = $em->getRepository('\Admin\Entity\Usuario')->findAll();
-        var_dump($usuarios);exit;
+        //var_dump($usuarios);exit;
         return new ViewModel(
             array(
                 'usuarios' => $usuarios
@@ -48,7 +48,7 @@ class UsuariosController extends AbstractActionController
             $usuario = new Usuario();
             $form->setInputFilter($usuario->getInputFilter());
             $form->setData($values);
-            var_dump($form->isValid()); exit;
+            var_dump($form); exit;
             
             if($form->isValid()) {
                 $values = $form->getData();

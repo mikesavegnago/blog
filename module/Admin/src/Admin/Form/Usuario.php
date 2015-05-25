@@ -134,7 +134,7 @@ class Usuario extends Form
                         'criteria' => array(),
                         'orderBy' => array('id' => 'Integer'),
                     ),
-                ),
+                ), 
             ),
         ));
 		

@@ -7,6 +7,7 @@ return array(
             'Admin\Controller\Usuarios' => 'Admin\Controller\UsuariosController',
             'Admin\Controller\Posts' => 'Admin\Controller\PostsController',
             'Admin\Controller\Index' => 'Admin\Controller\IndexController',
+            'Admin\Controller\Login' => 'Admin\Controller\LoginController',
         ),
     ),
     //Configuração doctrine
