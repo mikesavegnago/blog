@@ -59,6 +59,14 @@ class Comentario extends Form
                     'name' => 'post',
                     'type' => 'textarea',
                 ));
+
+            $this->add(array(
+			'name' => 'submit',
+			'type' => 'submit',
+			'attributes' => array(
+				'value' => 'Salvar'
+				)
+			));
 	
 		
 	}

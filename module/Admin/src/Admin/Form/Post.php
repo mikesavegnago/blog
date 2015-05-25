@@ -75,6 +75,15 @@ class Post extends Form {
                 'id' => 'ativo'
             )
         ));
+
+
+        $this->add(array(
+            'name' => 'submit',
+            'type' => 'submit',
+            'attributes' => array(
+                'value' => 'Salvar'
+                )
+            ));
     }
 
 }
