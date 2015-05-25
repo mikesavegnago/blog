@@ -25,7 +25,7 @@ class Comentario extends Form
 		
 		$this->add(
 			array(
-				'name' => 'id',
+				'name' => 'isd',
 				'type' => 'hidden',
 				)
 			);
