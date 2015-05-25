@@ -25,10 +25,11 @@ class PostsController extends AbstractActionController
     {
 		$em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $posts = $em->getRepository('\Admin\Entity\Post')->findAll();
-        var_dump($posts);exit;
+        $usuario = $em->getRepository('\Admin\Entity\Usuario')->findAll(array(), array('id' => 1));
         return new ViewModel(
             array(
-                'posts' => $posts
+                'posts' => $posts,
+                'usuario' => $usuario
             )
         );
     }
@@ -46,21 +47,23 @@ class PostsController extends AbstractActionController
         if ($request->isPost()) {
             $post = new Post();
             $values = $request->getPost();
-            $form->setInputFilter($usuario->getInputFilter());
+            $form->setInputFilter($post->getInputFilter());
             $form->setData($values);
-            
+            var_dump($form);
+
             if ($form->isValid()) {             
                 $values = $form->getData();
 
                 if ( (int) $values['id'] > 0)
                     $post = $em->find('\Admin\Entity\Post', $values['id']);
 
+                
                 $post->setTitulo($values['titulo']);
                 $post->setMinText($values['minText']);
                 $post->setPostComp($values['postComp']);
                 $post->setAtivo($values['ativo']);
                 $post->setUsuario($values['usuario']);
-
+                //var_dump($post);exit;
                 $em->persist($post);
 
                 try {

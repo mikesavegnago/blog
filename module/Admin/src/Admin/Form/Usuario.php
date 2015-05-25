@@ -118,6 +118,25 @@ class Usuario extends Form
                         'class' => 'form-control'
                     )
                 ));
+
+           $this->add(array(
+            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            'name' => 'Usuario',
+            'options' => array(
+                'label' => 'Contato:*',
+                'object_manager' => $em,
+                'target_class' => 'Admin\Entity\Usuario',
+                'property' => 'nome',
+                'is_method' => true,
+                'find_method' => array(
+                    'name' => 'findBy',
+                    'params' => array(
+                        'criteria' => array(),
+                        'orderBy' => array('id' => 'Integer'),
+                    ),
+                ),
+            ),
+        ));
 		
 		
 		$this->add(array(

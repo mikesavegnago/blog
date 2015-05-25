@@ -248,12 +248,8 @@ class Post
             )));
             $inputFilter->add($factory->createInput(array(
                         'name' => 'ativo',
-                        'required' => true,
-                        'validators' => array(
-                            array(
-                                'name' => 'Integer',
-                            ),
-            ))));
+                        'required' => true
+            )));
             $inputFilter->add($factory->createInput(array(
                         'name' => 'usuario',
                         'required' => true,
