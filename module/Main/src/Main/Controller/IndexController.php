@@ -16,15 +16,21 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {			
-    	$view = new ViewModel();
-
-        return $view;
+    	return new ViewModel();
     }
 
-	public function paginaAction()
-	{
-		
-		return new ViewModel();
-	}	
-	
+    public function paginaAction()
+    {
+        return new ViewModel();
+    }	
+    
+    public function loginAction()
+    {
+        return new ViewModel();
+    }	
+    
+    public function usuariosAction()
+    {
+        return new ViewModel();
+    }	
 }

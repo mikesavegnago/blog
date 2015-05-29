@@ -1,21 +1,42 @@
-<div class="wrapper">
-    <form class="form-signin" >       
-        <h2 class="form-signin-heading">Cadastro de usuário</h2>
-        <input type="text" class="form-control" name="nome" placeholder="Nome Completo" required autofocus="" />
-        <br>
-        <input type="text" class="form-control" name="email" placeholder="E-mail" required />
-        <br>
-        <input type="text" class="form-control" name="data_nasc" id="data_nasc" placeholder="Data de Nascimento" required />
-        <br>
-        <input type="text" class="form-control" name="login" placeholder="Login" required />
-        <br>
-        <input type="password" class="form-control" name="senha" placeholder="Senha" required />
-        <br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" value="location.href='/admin/contatos/save'">Cadastrar</button>  
-        <br>
-        Já possuí cadastro? <a href="/">Acesse o blog!</a>
-    </form>
+<button class="btn btn-success" onclick="location.href = '/admin/usuarios/save'">Novo Usuario</button>
+<br>
+<br>
+<br>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Nome</td>
+                    <td>Editar</td>
+                    <td>Excluir</td>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($usuarios as $usuario) {
+                    ?>
+                    <tr>
+                        <td>
+                            <?php echo $usuario->getId(); ?>
+                        </td>
+                        <td>
+                            <?php echo $usuario->getNome(); ?>
+                        </td>
+                        <td>
+                            <a href="/admin/usuarios/save/id/<?php echo $usuario->getId(); ?>">Editar</a>
+                        </td>
+                        <td>
+                            <a href="/admin/usuarios/delete/id/<?php echo $usuario->getId(); ?>">Excluir</a>
+                        </td>
+                    </tr>
+                <?php }
+                ?>
+            </tbody>
+    
+</table>
 </div>
+<<<<<<< HEAD
 <script type="text/javascript" src="/js/maskedinput.min.js"></script>
 <script>
 jQuery(function($){
@@ -23,3 +44,6 @@ jQuery(function($){
 });
 </script>
 
+=======
+</div>
+>>>>>>> ajuste de layouts

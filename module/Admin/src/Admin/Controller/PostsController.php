@@ -23,7 +23,7 @@ class PostsController extends AbstractActionController
      */
     public function indexAction()
     {
-		$em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $posts = $em->getRepository('\Admin\Entity\Post')->findAll();
         $usuario = $em->getRepository('\Admin\Entity\Usuario')->findAll(array(), array('id' => 1));
         return new ViewModel(
@@ -49,7 +49,6 @@ class PostsController extends AbstractActionController
             $values = $request->getPost();
             $form->setInputFilter($post->getInputFilter());
             $form->setData($values);
-
             if ($form->isValid()) {             
                 $values = $form->getData();
 

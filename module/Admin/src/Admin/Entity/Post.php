@@ -27,6 +27,10 @@ class Post
      */
     protected $id;
     
+    /**
+    *
+    *@var Zend/InputFilter/InputFilter
+    */
     protected $inputFilter;
 
     /**

@@ -15,8 +15,7 @@ use Zend\InputFilter\InputFilter;
  * @category Admin
  * @package Entity
  */
-class Usuario 
-{
+class Usuario {
 
     /**
      * @ORM\Id
@@ -27,6 +26,10 @@ class Usuario
      */
     protected $id;
     
+    /**
+    *
+    *@var Zend/InputFilter/InputFilter
+    */
     protected $inputFilter;
 
     /**

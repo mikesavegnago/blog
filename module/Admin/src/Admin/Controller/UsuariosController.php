@@ -4,8 +4,8 @@ namespace Admin\Controller;
 
 use Zend\View\Model\ViewModel;
 use Zend\Mvc\Controller\AbstractActionController;
-use \Admin\Form\Usuario as UsuarioForm;
 use \Admin\Entity\Usuario as Usuario;
+use \Admin\Form\Usuario as UsuarioForm;
 
 /**
  * Controlador que gerencia os usuários
@@ -25,7 +25,6 @@ class UsuariosController extends AbstractActionController
      {
         $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $usuarios = $em->getRepository('\Admin\Entity\Usuario')->findAll();
-        //var_dump($usuarios);exit;
         return new ViewModel(
             array(
                 'usuarios' => $usuarios
@@ -42,13 +41,17 @@ class UsuariosController extends AbstractActionController
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $form = new UsuarioForm($em);
         $request = $this->getRequest();
-        
+
         if ($request->isPost()) {
             $values = $request->getPost();
             $usuario = new Usuario();
-            $form->setInputFilter($usuario->getInputFilter());
+            if (!$values['perfil']) {
+                $values['perfil'] = 'VISITANTE';
+            }
+            $filters = $usuario->getInputFilter();
+            $form->setInputFilter($filters);
             $form->setData($values);
-            var_dump($form); exit;
+            $filters->setData($values);
             
             if($form->isValid()) {
                 $values = $form->getData();

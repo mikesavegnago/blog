@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <buttom class="btn btn-success" onclick="location.href = '/admin/posts/save'">Novo Post</buttom>
 
 <table class="table">
@@ -54,3 +55,43 @@
 
 
 
+=======
+<button class="btn btn-success" onclick="location.href = '/admin/posts/save'">Novo Post</button>
+<br>
+<br>
+<br>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Título</td>
+                    <td>Editar</td>
+                    <td>Excluir</td>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($posts as $post) {
+                    ?>
+                    <tr>
+                        <td>
+                            <?php echo $post->getId(); ?>
+                        </td>
+                        <td>
+                            <?php echo $post->getTitulo(); ?>
+                        </td>
+                        <td>
+                            <a href="/admin/posts/save/id/<?php echo $post->getId(); ?>">Editar</a>
+                        </td>
+                        <td>
+                            <a href="/admin/posts/delete/id/<?php echo $post->getId(); ?>">Excluir</a>
+                        </td>
+                    </tr>
+                <?php }
+                ?>
+            </tbody>
+</table>
+</div>
+</div>
+>>>>>>> ajuste de layouts

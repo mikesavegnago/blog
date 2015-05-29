@@ -3,7 +3,6 @@ return array(
     // This should be an array of module namespaces used in the application.
     'modules' => array(
         'Main',
-        'Application',
         'Admin',
         'Core',
         'DoctrineModule',
