@@ -83,6 +83,12 @@ class UsuariosController extends AbstractActionController
             }
         }
         
+        $id = (int) $this->params()->fromRoute('id', 0);        
+        if($id >0 ){
+            $usuario = $em->find('\Admin\Entity\Usuario', $id);
+            $form-> bind($usuario);
+        }
+        
         return new ViewModel(
             array('form' => $form)
             );

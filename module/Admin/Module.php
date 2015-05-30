@@ -59,6 +59,7 @@ class Module
         $moduleName = $routeMatch->getParam('module');
         $controllerName = $routeMatch->getParam('controller');
         $actionName = $routeMatch->getParam('action');
+        
         $authService = $di->get('Admin\Service\Auth');
 
         if(!$authService->authorize($moduleName,$controllerName,$actionName)){
