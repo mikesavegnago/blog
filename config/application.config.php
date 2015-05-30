@@ -4,7 +4,7 @@ return array(
     'modules' => array(
         'Main',
         'Admin',
-        'Core',
+        //'Core',
         'DoctrineModule',
         'DoctrineORMModule',
     ),

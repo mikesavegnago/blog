@@ -16,7 +16,8 @@ return array(
     'acl' => array(
         'roles' => array(
             'VISITANTE' => null,
-            'ADMIN' => 'VISITANTE',
+            'REDATOR' => 'VISITANTE',
+            'ADMIN' => 'REDATOR',
         ),
         'resources' => array(
             'Application\Controller\Index.index',
@@ -36,24 +37,29 @@ return array(
             'VISITANTE' => array(
                 'allow' => array(
                     'Admin\Controller\Posts.index',
-                    'Main\Controller\Comentarios.index'
+                    'Admin\Controller\Login.index',
+                    'Admin\Controller\Login.login',
+                    'Admin\Controller\Login.logout',
+                    'Main\Controller\Comentarios.index',
+                    'Main\Controller\Comentarios.save'
                 )
             ),
+            
+            'REDATOR' => array(
+                'allow' => array(
+                    'Admin\Controller\Posts.save',
+                    'Admin\Controller\Posts.delete'
+                )
             ),
+            
             'ADMIN' => array(
                 'allow' => array(
-                	'Application\Controller\Index.index',
-           		    'Admin\Controller\Login.login',
-            		'Admin\Controller\Login.logout',
                     'Admin\Controller\Usuarios.index',
                     'Admin\Controller\Usuarios.save',
                     'Admin\Controller\Usuarios.delete',
-                    'Admin\Controller\Posts.save',
-                    'Admin\Controller\Posts.delete',
-                    'Main\Controller\Comentarios.save',
-                    'Main\COntroller\Comentarios.delete'
                 )
             ),
+        )
         
     )
     
