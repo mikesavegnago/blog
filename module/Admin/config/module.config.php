@@ -16,11 +16,13 @@ return array(
             'application_entities' => array(
                 'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
-                'paths' => array(__DIR__ . '/../src/Admin/Entity')
+                'paths' => array(__DIR__ . '/../src/Admin/Entity',
+                                 __DIR__ . '/../src/Main/Entity')
             ),
             'orm_default' => array(
                 'drivers' => array(
-                    'Admin\Entity' => 'application_entities'
+                    'Admin\Entity' => 'application_entities',
+                    'Main\Entity' => 'application_entities'
                 )
             ))),
     //*********************************************************
@@ -65,8 +67,12 @@ return array(
     
     'service_manager' => array(
         'factories' => array(
-            'Session' => function ($sm) {
-                return new Zend\Session\Container('SessionAdmin');
+            'Session' => function($sm) {
+                return new Zend\Session\Container('Blog');
+            },
+            'Admin\Service\Auth' => function($sm) {
+                $dbAdapter = $sm->get('DbAdapter');
+                return new Admin\Service\Auth($dbAdapter);
             },
         )
     ),
