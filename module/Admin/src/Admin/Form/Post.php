@@ -15,7 +15,7 @@ use Zend\Form\Element;
 
 class Post extends Form {
 
-    public function __construct(\Doctrine\ORM\EntityManager $em) 
+    public function __construct($em) 
     {
         parent::__construct('post');
         $this->setAttribute('action','');

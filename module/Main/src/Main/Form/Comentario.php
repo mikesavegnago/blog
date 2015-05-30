@@ -42,22 +42,16 @@ class Comentario extends Form
 				)
 			));
 		
-                $this->add(array(
-                   'name' => 'comentario',
-                    'type' => 'textarea',
-                    'options' => array(
-                        'label' => 'Comentario:'
+        $this->add(array(
+            'name' => 'comentario',
+            'type' => 'textarea',
+                'options' => array(
+        	         'label' => 'Comentario:'
                     ),
                     'attributes' => array(
                         'placeholder' => 'Informe Comentario',
                         'id' => 'comentario',
                     )
-                ));
-                
-                // nao sei como faz o relacionamento com post aqui                
-                $this->add(array(
-                    'name' => 'post',
-                    'type' => 'textarea',
                 ));
 
             $this->add(array(
