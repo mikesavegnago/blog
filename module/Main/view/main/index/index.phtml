@@ -4,48 +4,47 @@
         <div class="col-lg-8 col-md-8">
             <!-- start:single content -->
             <div id="main-single-content">
-                <div class="content-single">
-                    <h2>Niki Postingan Sing Kepisan Njeh, Perdana Ngoten</h2>
-                    <div class="tag">
-                        <p>	
-                            <span><i class="fa fa-user" data-original-title="" title=""></i> <a href="#">Admin</a></span> 
-                            <i class="fa fa-circle" data-original-title="" title=""></i> 
-                            <span><i class="fa fa-calendar" data-original-title="" title=""></i> <a href="#">Juni, 30 2014</a></span>
-
-                        </p>
-                    </div>
-                    <div class="hr-single"></div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod diam at commodo sagittis. Nam id molestie velit. Nunc id nisl tristique, dapibus tellus quis, dictum metus. Pellentesque id imperdiet est. Maecenas adipiscing dui at enim placerat hendrerit. Curabitur pulvinar fermentum ante id bibendum. Etiam est sem, pharetra in luctus quis, tempor facilisis urna. Etiam ullamcorper dictum elit sit amet hendrerit. Donec porta mauris a est rhoncus pharetra.</p>
-                    <div class="hr-single"></div> 
-                </div>
+                <?php foreach ($posts as $post) { ?>
+                <?php
+                    $comentarios = $em->getRepository('Main\Entity\Comentario')
+                            ->findBy(array('post' => $post->getId()));
+                ?>
                     <div class="content-single">
-                        <h2>Niki Postingan Sing Kepisan Njeh, Perdana Ngoten</h2>
+                        <h2><?= $post->getTitulo(); ?></h2>
                         <div class="tag">
                             <p>	
-                                <span><i class="fa fa-user" data-original-title="" title=""></i> <a href="#">Admin</a></span> 
+                                <span><i class="fa fa-user" data-original-title="" title=""></i> 
+                                    <a href="/main/index/pagina/id/<?= $post->getId(); ?>"><?php //= $post->getUsuario()->getNome(); ?></a>
+                                </span> 
                                 <i class="fa fa-circle" data-original-title="" title=""></i> 
-                                <span><i class="fa fa-calendar" data-original-title="" title=""></i> <a href="#">Juni, 30 2014</a></span>
+                                <span><i class="fa fa-calendar" data-original-title="" title=""></i> 
+                                    <a href="#"><?= $post->getData()->format('d/m/Y'); ?></a>
+                                </span>
+                                <span><i class="fa fa-calendar" data-original-title="" title=""></i> 
+                                    <a href="#"><?php echo sizeof($comentarios) . " Comentarios"; ?></a>
+                                </span>
 
                             </p>
                         </div>
                         <div class="hr-single"></div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas euismod diam at commodo sagittis. Nam id molestie velit. Nunc id nisl tristique, dapibus tellus quis, dictum metus. Pellentesque id imperdiet est. Maecenas adipiscing dui at enim placerat hendrerit. Curabitur pulvinar fermentum ante id bibendum. Etiam est sem, pharetra in luctus quis, tempor facilisis urna. Etiam ullamcorper dictum elit sit amet hendrerit. Donec porta mauris a est rhoncus pharetra.</p>
+                        <p><?= $post->getMinText(); ?></p>
+                        <input type="button" class="btn btn-primary" value="Leia Mais" 
+                               onclick="window.location = '/main/index/pagina/id/<?= $post->getId(); ?>';">
                         <div class="hr-single"></div> 
                     </div>
+                <?php } ?>
             </div>
             <div class="col-lg-12 col-md-12">
-                            <div class="text-center">
-                                <ul class="pagination">
-                                    <li><a href="#">&laquo;</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li><a href="#">&raquo;</a></li>
-                                </ul>
-                            </div>
-                        </div> 
+                
+                <?php
+            echo $this->paginationControl(
+                    $posts, 'sliding', array('partials/paginator.phtml', 'Main'), 
+                    array(
+                    'route' => 'index_paginacao'
+                    )
+            );
+            ?>
+            </div> 
             <!-- end:single content -->
         </div>
         <div class="col-lg-4 col-md-4">
@@ -54,19 +53,15 @@
                 <!-- start:widget recent post -->
                 <div class="widget-sidebar">
                     <h3 class="title-widget-sidebar">
-                        // POSTS RECENTES
+                        // BUSCA
                     </h3>
                     <div class="content-widget-sidebar">
-                        <ul> 
-                            <li class="recent-post"> 
-                                 <div class="thumbnail">
-                                    <img src="../../img/thumbnail1.jpg" class="img-responsive">
-                                </div>
-                                <a href="#"><h5>Excepteur sint occaecat cupi non
-                                        proident laborum.</h5></a>
-                                <p><small><i class="fa fa-calendar"></i> 30 Juni 2014</small></p>
-                            </li> 
-                        </ul>
+                        <form action="" method="post" class="form-inline">
+                            <div class="form-group"> 
+                                <input class="form-control" type="text" name="search" placeholder="Buscar" />
+                            </div>
+                            <input type="submit" class="btn btn-success" value="Buscar" />
+                        </form>
                     </div>
                 </div>
                 <!-- end:widget recent post -->

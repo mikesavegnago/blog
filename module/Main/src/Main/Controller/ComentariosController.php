@@ -55,16 +55,11 @@ class ComentariosController extends AbstractActionController
            
             
             if ($form->isValid()){             
-                $values = $form->getData(); 
-                if ( (int) $values['id'] > 0)
-                    $comentario = $em->find('\Main\Entity\Comentario', $values['id']);
-                
-               
+                $values = $form->getData();
                 $comentario->setEmail($values['email']);
                 $comentario->setComentario($values['comentario']);
-                $post = $em->find('\Admin\Entity\Post', (int)$values['post']);
+                $post = $em->find('\Admin\Entity\Post', $values['post']);
                 $comentario->setPost($post);
-                $comentario->setData( new \DateTime());
                 
                 
                $em->persist($comentario);
@@ -73,19 +68,12 @@ class ComentariosController extends AbstractActionController
                     $em->flush();
                     $this->flashMessenger()->addSuccessMessage('Comentario armazenado com sucesso');
                 } catch (\Exception $e) {
-                    $this->flashMessenger()->addErrorMessage('Erro ao armazenar comentario'.$e);
+                    $this->flashMessenger()->addErrorMessage('Erro ao armazenar comentario'.$e->getMessage());
                 }
 
-                return $this->redirect()->toUrl('/main/comentarios');
+                return $this->redirect()->toUrl('/main/index/pagina/id/'.$values["post"]);
             }
-        }
-
-        $id = $this->params()->fromRoute('id', 0);
-
-        if ((int) $id > 0) {
-            $comentario = $em->find('\Main\Entity\Comentario', $id);
-            $form->bind($comentario);
-        }
+        } 
 
         return new ViewModel(
             array('form' => $form)

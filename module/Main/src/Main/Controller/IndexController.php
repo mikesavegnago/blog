@@ -9,28 +9,58 @@
 
 namespace Main\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
+use Core\Controller\ActionController as ActionController;
 use Zend\View\Model\ViewModel;
+use Zend\Paginator\Paginator;
+use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
+use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
 
-class IndexController extends AbstractActionController
+class IndexController extends ActionController
 {
     public function indexAction()
     {			
-    	return new ViewModel();
+        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $search = $request->getPost('search');
+            $search = mb_strtoupper($search, 'UTF-8');
+        }
+        $posts = $this->getService('Admin\Service\Index')->fetchAll($search);
+        $adapter = new DoctrineAdapter(new ORMPaginator($posts));
+        $paginator = new Paginator($adapter);
+        $paginator->setDefaultItemCountPerPage(2);
+        $page = (int) $this->params()->fromRoute('page', 0);
+
+        if($page)
+            $paginator->setCurrentPageNumber($page);
+
+        return new ViewModel(array(
+            'posts' => $paginator , 'em' => $em
+            )
+        );
     }
 
+    /**
+    * Visualiza um post
+    * @return void
+    */
     public function paginaAction()
     {
-        return new ViewModel();
-    }	
-    
-    public function loginAction()
-    {
-        return new ViewModel();
-    }	
-    
-    public function usuariosAction()
-    {
-        return new ViewModel();
+        $id = $this->params()->fromRoute('id', 0);
+        $posts = $this->getService('Admin\Service\Index')->fetchById($id);
+        $comentarios = $this->getService('Admin\Service\Comentario')->fetchAllComentariosPost($id);
+        $adapter = new DoctrineAdapter(new ORMPaginator($posts));
+        $paginator = new Paginator($adapter);
+        $paginator->setDefaultItemCountPerPage(2);
+        $page = (int) $this->params()->fromRoute('page', 0);
+        
+        if($page)
+            $paginator->setCurrentPageNumber($page);
+        
+        
+        return new ViewModel(array(
+            'posts' => $paginator , 'comentarios' => $comentarios
+            )
+        );
     }	
 }

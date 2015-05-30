@@ -12,10 +12,9 @@
                 <tr>
                     <td>Id</td>
                     <td>Título</td>
-                    <td>Comentarios</td>
+                    <td>Data</td>
                     <td>Editar</td>
                     <td>Excluir</td>
-                    <td>Comentar</td>
                 </tr>
             </thead>
             <tbody>
@@ -30,14 +29,7 @@
                             <?php echo $post->getTitulo(); ?>
                         </td>
                         <td>
-                        <?php
-                            foreach($comentarios as $comentario){
-                                 if($post->getId() == $comentario->getPost()->getId()){
-                                     var_dump ($comentario->getEmail());
-                                     var_dump ($comentario->getComentario());
-                                 }
-                             }  
-                         ?>
+                            <?php echo $post->getData()->format('d/m/Y'); ?>
                         </td>
                         <td>
                             <a href="/admin/posts/save/id/<?php echo $post->getId(); ?>">Editar</a>
@@ -45,13 +37,8 @@
                         <td>
                             <a href="/admin/posts/delete/id/<?php echo $post->getId(); ?>">Excluir</a>
                         </td>
-                        <td>
-                            <!-- <a href="/main/comentarios/save/id/<?php //echo $post->getId(); ?>">Comentar</a>  -->
-                            
-                        </td>
                     </tr>
-                <?php }
-                ?>
+                <?php } ?>
             </tbody>
 </table>
 </div>

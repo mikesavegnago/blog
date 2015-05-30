@@ -1,0 +1,34 @@
+<!--
+See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination
+-->
+
+<?php if ($this->pageCount): ?>
+    <div class="text-center">
+        <ul class="pagination">
+            <?php if (isset($this->previous)): ?>
+                <li> <a href="<?php echo $this->url($this->route, array('page' => $this->previous)); ?>">
+                        &laquo;
+                    </a></li>
+            <?php else: ?>
+                <li><a href="#">&laquo;</a></li>
+            <?php endif; ?>
+
+            <?php foreach ($this->pagesInRange as $page): ?>
+                <?php if ($page != $this->current): ?>
+                    <li><a href="<?php echo $this->url($this->route, array('page' => $page)); ?>">
+                            <?php echo $page; ?>
+                        </a></li>
+                <?php else: ?>
+                    <li><a href="#"><?php echo $page; ?></a></li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            <?php if (isset($this->next)): ?>
+                <li><a href="<?php echo $this->url($this->route, array('page' => $this->next)); ?>">
+                        &raquo;
+                    </a></li>
+            <?php else: ?>
+                <li><a href="#">&raquo;</a></li>
+            <?php endif; ?> 
+        <?php endif; ?>
+    </ul>
+</div> 

@@ -17,13 +17,11 @@ return array(
                 'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
                 'paths' => array(__DIR__ . '/../src/Admin/Entity'
-                               //  __DIR__ . '/../src/Main/Entity'
                       )
             ),
             'orm_default' => array(
                 'drivers' => array(
-                    'Admin\Entity' => 'application_entities',
-                    'Main\Entity' => 'application_entities'
+                    'Admin\Entity' => 'application_entities'
                 )
             ))),
     //*********************************************************
@@ -63,9 +61,21 @@ return array(
                     
                 ),
             ),
+            'index_paginacao' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route' => '/[page/:page]',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Main\Controller',
+                        'controller' => 'Index',
+                        'action' => 'index',
+                        'module' => 'main',
+                        'page' => 1,
+                    ),
+                ),
+            ), 
         ),
     ),
-    
     'service_manager' => array(
         'factories' => array(
             'Session' => function($sm) {

@@ -47,6 +47,11 @@ return array(
                             'defaults' => array(
                             ),
                         ),
+                        'child_routes' => array( //permite mandar dados pela url 
+                            'wildcard' => array(
+                                'type' => 'Wildcard'
+                            ),
+                        ),
                     ),
                 ),
             ),
@@ -93,6 +98,20 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
+    //Configuração doctrine
+    'doctrine' => array(
+        'driver' => array(
+            'application_entities' => array(
+                'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(__DIR__ . '/../src/Main/Entity'
+                      )
+            ),
+            'orm_default' => array(
+                'drivers' => array(
+                    'Main\Entity' => 'application_entities'
+                )
+            ))),
     // Placeholder for console routes
     'console' => array(
         'router' => array(

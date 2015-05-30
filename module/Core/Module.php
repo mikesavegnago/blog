@@ -3,7 +3,6 @@
 namespace Core;
 
 use Zend\Mvc\MvcEvent;
-use Zend\Mvc\ModuleRouteListener as ModuleRouteListener;
 
 class Module
 {
@@ -27,19 +26,6 @@ class Module
         return include __DIR__ . '/config/module.config.php';
     }
 
-    public function onBootstrap($e)
-    {
-        $e->getApplication()->getServiceManager()->get('translator');
-        $e->getApplication()->getServiceManager()->get('viewhelpermanager')->setFactory('currentUrl', function($sm) use ($e) {
-            $viewHelper = new \Core\View\Helper\CurrentUrl($e->getRouteMatch());
-            return $viewHelper;
-        });
-
-        $eventManager        = $e->getApplication()->getEventManager();
-        $moduleRouteListener = new ModuleRouteListener();
-        $moduleRouteListener->attach($eventManager);
-    }
-
     public function getServiceConfig()
     {
         return array(
@@ -49,3 +35,4 @@ class Module
         );
     }
 }
+

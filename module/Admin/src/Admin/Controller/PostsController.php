@@ -25,12 +25,10 @@ class PostsController extends AbstractActionController
     {
         $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $posts = $em->getRepository('\Admin\Entity\Post')->findAll();
-        $comentarios = $em->getRepository('\Main\Entity\Comentario')->findAll();
         
         return new ViewModel(
             array(
-                'posts' => $posts,
-                'comentarios' =>$comentarios
+                'posts' => $posts
             )
         );
     }
@@ -80,12 +78,12 @@ class PostsController extends AbstractActionController
             }
         }
 
-//        $id = $this->params()->fromRoute('id', 0);
-//
-//       if ((int) $id > 0) {
-//            $usuario = $em->find('\Admin\Entity\Usuario', $id);
-//            $form->bind($usuario);
-//        }
+        $id = $this->params()->fromRoute('id', 0);
+
+       if ((int) $id > 0) {
+            $post = $em->find('\Admin\Entity\Post', $id);
+            $form->bind($post);
+        }
 
         return new ViewModel(
             array('form' => $form)

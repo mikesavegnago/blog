@@ -43,13 +43,6 @@ class Comentario
     protected $comentario;
 
     /**
-     * @ORM\Column (type="datetime")
-     *
-     * @var datetime
-     */
-    protected $data;
-
-    /**
      * @ORM\ManyToOne(targetEntity="\Admin\Entity\Post")
      * @ORM\JoinColumn(name="id_post", referencedColumnName="id"  )
      *
@@ -90,21 +83,7 @@ class Comentario
      */
     public function setComentario($comentario) {
         $this->comentario = $comentario;
-    }
-
-    /**
-     * @return datetime
-     */
-    public function getData() {
-        return $this->data;
-    }
-
-    /**
-     * @param Datetime $data
-     */
-    public function setData($data) {
-        $this->data = $data;
-    }
+    } 
 
     /**
      * @return Post
@@ -188,22 +167,7 @@ class Comentario
                     'options' => array('encoding' => 'UTF-8')
                     ),
                 ),
-            )));
-
-        $inputFilter->add(
-            $factory->createInput(array(
-                'name' => 'data',
-                'required' => true,                        
-                'validators' => array(
-                    array(
-                        'name' => 'Date',
-                        'options' => array(
-                            'format' => 'Y-m-d H:i:s'                                    
-                            ),
-                        ),
-                    ),
-                ))
-            );
+            ))); 
 
     $this->inputFilter = $inputFilter;
     }

@@ -1,0 +1,26 @@
+<?php 
+
+    $alertasTotal = $this->session()->offsetGet('alert');
+    $hoje =  date("Y/m/d");
+    $alertaPos = array();
+    if(count($alertasTotal < 0)){
+        foreach ($alertasTotal as $list){
+            if (strtotime($list['data_agenda']->format('Y/m/d')) < strtotime(date("Y/m/d"))){
+                $alertaPos[] = $list['data_agenda'];
+            }
+            else{                
+                $alertaPre[] = $list['data_agenda'];
+            }            
+        } 
+    }               
+         $title = 'Voce tem '.count($alertasTotal).' manutenção(ões) em periodos próximos. <br> '.  count($alertaPos) .' delas já foi(foram) vencidas!';
+         if (count($alertasTotal) > 0){
+             ?><div id="dialog-message" title="Atenção!">
+                <p>
+                    <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>
+                    <?php echo $title; ?>
+                </p>      
+             </div> 
+     <?php
+        }        
+ ?>     
