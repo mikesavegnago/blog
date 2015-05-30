@@ -62,6 +62,13 @@ class Post
     protected $ativo;
 
     /**
+     * @ORM\Column (type="datetime")
+     *
+     * @var datetime
+     */
+    protected $data;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Usuario")
      * @ORM\JoinColumn(name="id_usuario", referencedColumnName="id")
      *
@@ -137,6 +144,20 @@ class Post
      */
     public function getUsuario() {
         return $this->usuario;
+    }
+
+        /**
+     * @return datetime
+     */
+    public function getData() {
+        return $this->data;
+    }
+
+    /**
+     * @param Datetime $data
+     */
+    public function setData($data) {
+        $this->data = $data;
     }
 
     /**
@@ -254,16 +275,7 @@ class Post
                         'name' => 'ativo',
                         'required' => true
             )));
-            $inputFilter->add($factory->createInput(array(
-                        'name' => 'usuario',
-                        'required' => true,
-                        'validators' => array(
-                            array(
-                                'name' => 'NotEmpty',
-                                'options' => array('message' => 'O campo Usuario não pode estar vazio')
-                            )
-                        ),
-            )));
+
 
             $this->inputFilter = $inputFilter;
         }

@@ -75,13 +75,6 @@ class Usuario {
     protected $senha;
 
     /**
-     * @ORM\Column (type="string")
-     *
-     * @var string
-     */
-    protected $role;
-
-    /**
      * @return string
      */
     public function getNome() {
@@ -172,19 +165,6 @@ class Usuario {
         $this->senha = $senha;
     }
 
-    /**
-     * @return string
-     */
-    public function getRole() {
-        return $this->role;
-    }
-
-    /**
-     * @param string $role
-     */
-    public function setRole($role) {
-        $this->role = $role;
-    }
 
     /**
      * @return array
@@ -251,26 +231,7 @@ class Usuario {
                         ),
                     ))
             );
-            $inputFilter->add(
-                    $factory->createInput(array(
-                        'name' => 'role',
-                        'required' => true,
-                        'filters' => array(
-                            array('name' => 'StripTags'),
-                            array('name' => 'StringTrim'),
-                        ),
-                        'validators' => array(
-                            array(
-                                'name' => 'StringLength',
-                                'options' => array(
-                                    'encoding' => 'UTF-8',
-                                    'min' => '1',
-                                    'max' => '100',
-                                ),
-                            ),
-                        ),
-                    ))
-            );
+
 
             $inputFilter->add($factory->createInput(array(
                         'name' => 'nome',
@@ -364,7 +325,7 @@ class Usuario {
                                 'name' => 'Date',
                                 'options' => array(
                                     'message' => 'Não parece uma data válida',
-                                    'format' => 'd-m-Y'
+                                    'format' => 'Y-m-d'
                                 )
                             ),
                         ),

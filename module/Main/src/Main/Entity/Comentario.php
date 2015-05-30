@@ -43,10 +43,17 @@ class Comentario
     protected $comentario;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Comentario")
+     * @ORM\Column (type="datetime")
+     *
+     * @var datetime
+     */
+    protected $data;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="\Admin\Entity\Post")
      * @ORM\JoinColumn(name="id_post", referencedColumnName="id")
      *
-     * @var \Admin\Model\Post
+     * @var \Admin\Entity\Post
      */
     protected $post;
 
@@ -86,6 +93,20 @@ class Comentario
     }
 
     /**
+     * @return datetime
+     */
+    public function getData() {
+        return $this->data;
+    }
+
+    /**
+     * @param Datetime $data
+     */
+    public function setData($data) {
+        $this->data = $data;
+    }
+
+    /**
      * @return Post
      */
     public function getPost() {
@@ -111,88 +132,82 @@ class Comentario
      * @return Zend/InputFilter/InputFilter
      */
     public function getInputFilter() {
+
         if (!$this->inputFilter) {
             $inputFilter = new InputFilter();
             $factory = new InputFactory();
+            
             $inputFilter->add($factory->createInput(array(
-                        'name' => 'id',
-                        'required' => false,
-                        'filters' => array(
-                            array('name' => 'Int'),
-                        ),
-            )));
+                'name' => 'id',
+                'required' => false,
+                'filters' => array(
+                    array('name' => 'Int'),
+                    ),
+                )));
 
 
-            $inputFilter->add($factory->createInput(array(
+            $inputFilter->add(
+                    $factory->createInput(array(
                         'name' => 'email',
                         'required' => true,
-                        'validators' => array(
-                            array(
-                                'name' => 'NotEmpty',
-                                'options' => array('message' => 'O campo E-mail não pode estar vazio')
-                            ),
-                            array(
-                                'name' => 'StringLength',
-                                'options' => array(
-                                    'encoding' => 'UTF-8',
-                                    'min' => 3,
-                                    'max' => 255,
-                                    'message' => 'O campo E-mail deve ter mais que 3 caracteres e menos que 255',
-                                ),
-                            ),
-                            array(
-                                'name' => 'EmailAddress',
-                                'options' => array('message' => 'Não parece ser um e-mail válido')
-                            ),
-                        ),
                         'filters' => array(
                             array('name' => 'StripTags'),
-                            array('name' => 'StringTrim'),
-                            array('name' => 'StringToLower',
-                                'options' => array('encoding' => 'UTF-8')
-                            ),
+                            array('name' => 'StringTrim'),    
                         ),
-            )));
-            $inputFilter->add($factory->createInput(array(
-                        'name' => 'comentario',
-                        'required' => true,
                         'validators' => array(
                             array(
-                                'name' => 'NotEmpty',
-                                'options' => array('message' => 'O campo perfil não pode estar vazio')
-                            ),
-                            array(
-                                'name' => 'StringLength',
-                                'options' => array(
-                                    'encoding' => 'UTF-8',
-                                    'min' => 3,
-                                    'max' => 255,
-                                    'message' => 'O campo perfil deve ter mais que 3 caracteres e menos que 255',
-                                ),
+                                'name' => 'EmailAddress',                                
                             ),
                         ),
-                        'filters' => array(
-                            array('name' => 'StripTags'),
-                            array('name' => 'StringTrim'),
-                            array('name' => 'StringToUpper',
-                                'options' => array('encoding' => 'UTF-8')
-                            ),
+                    ))
+            );
+
+
+        $inputFilter->add($factory->createInput(array(
+            'name' => 'comentario',
+            'required' => true,
+            'validators' => array(
+                array(
+                    'name' => 'NotEmpty',
+                    'options' => array('message' => 'O campo Comentario não pode estar vazio')
+                    ),
+                array(
+                    'name' => 'StringLength',
+                    'options' => array(
+                        'encoding' => 'UTF-8',
+                        'min' => 3,
+                        'max' => 255,
+                        'message' => 'O campo comentario deve ter mais que 3 caracteres e menos que 255',
                         ),
-            )));
-            $inputFilter->add($factory->createInput(array(
-                        'name' => 'post',
-                        'required' => true,
-                        'validators' => array(
-                            array(
-                                'name' => 'NotEmpty',
-                                'options' => array('message' => 'O campo Usuario não pode estar vazio')
-                            )
-                        ),
+                    ),
+                ),
+            'filters' => array(
+                array('name' => 'StripTags'),
+                array('name' => 'StringTrim'),
+                array('name' => 'StringToUpper',
+                    'options' => array('encoding' => 'UTF-8')
+                    ),
+                ),
             )));
 
-            $this->inputFilter = $inputFilter;
-        }
-        return $this->inputFilter;
+        $inputFilter->add(
+            $factory->createInput(array(
+                'name' => 'data',
+                'required' => true,                        
+                'validators' => array(
+                    array(
+                        'name' => 'Date',
+                        'options' => array(
+                            'format' => 'Y-m-d H:i:s'                                    
+                            ),
+                        ),
+                    ),
+                ))
+            );
+
+    $this->inputFilter = $inputFilter;
     }
+return $this->inputFilter;
+}
 
 }
