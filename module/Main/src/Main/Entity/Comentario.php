@@ -51,7 +51,7 @@ class Comentario
 
     /**
      * @ORM\ManyToOne(targetEntity="\Admin\Entity\Post")
-     * @ORM\JoinColumn(name="id_post", referencedColumnName="id")
+     * @ORM\JoinColumn(name="id_post", referencedColumnName="id"  )
      *
      * @var \Admin\Entity\Post
      */
