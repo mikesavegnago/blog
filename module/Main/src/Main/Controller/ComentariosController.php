@@ -25,7 +25,6 @@ class ComentariosController extends AbstractActionController
     {
         $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $comentarios = $em->getRepository('\Main\Entity\Comentario')->findAll();
-        var_dump($comentarios);exit;
 
         return new ViewModel(
             array(
@@ -40,39 +39,41 @@ class ComentariosController extends AbstractActionController
      */
     public function saveAction()
      {
+        
         $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $form = new ComentarioForm($em);
         $request = $this->getRequest();
-
+        
         if ($request->isPost()) {
+            
             $comentario = new Comentario();
             $values = $request->getPost();
-            $form->setInputFilter($comentario->getInputFilter());
+            //var_dump($comentario);
+            //$form->setInputFilter($comentario->getInputFilter());
+            //var_dump($comentario);exit;
             $form->setData($values);
+           
             
-            if ($form->isValid()) {             
-                $values = $form->getData();
-
+            if ($form->isValid()){             
+                $values = $form->getData(); 
                 if ( (int) $values['id'] > 0)
                     $comentario = $em->find('\Main\Entity\Comentario', $values['id']);
-
+                
+               
                 $comentario->setEmail($values['email']);
                 $comentario->setComentario($values['comentario']);
-                $comentario->setPost($values['post']);
+                $post = $em->find('\Admin\Entity\Post', (int)$values['post']);
+                $comentario->setPost($post);
+                $comentario->setData( new \DateTime());
                 
-                // nao sei bem certo como funciona para salvar os posts
-                foreach ($values['post'] as $pos) {
-                    $posts = $em->find('\AMain\Entity\Post', $pos);
-                    $comentario->getPost()->add($posts);
-                }
-
-                $em->persist($comentario);
+                
+               $em->persist($comentario);
 
                 try {
                     $em->flush();
                     $this->flashMessenger()->addSuccessMessage('Comentario armazenado com sucesso');
                 } catch (\Exception $e) {
-                    $this->flashMessenger()->addErrorMessage('Erro ao armazenar comentario');
+                    $this->flashMessenger()->addErrorMessage('Erro ao armazenar comentario'.$e);
                 }
 
                 return $this->redirect()->toUrl('/main/comentarios');

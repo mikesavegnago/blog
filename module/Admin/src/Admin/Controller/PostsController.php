@@ -25,11 +25,12 @@ class PostsController extends AbstractActionController
     {
         $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $posts = $em->getRepository('\Admin\Entity\Post')->findAll();
-        $usuario = $em->getRepository('\Admin\Entity\Usuario')->findAll(array(), array('id' => 1));
+        $comentarios = $em->getRepository('\Main\Entity\Comentario')->findAll();
+        
         return new ViewModel(
             array(
                 'posts' => $posts,
-                'usuario' => $usuario
+                'comentarios' =>$comentarios
             )
         );
     }
@@ -43,36 +44,39 @@ class PostsController extends AbstractActionController
         $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $form = new PostForm($em);
         $request = $this->getRequest();
-
         if ($request->isPost()) {
             $post = new Post();
             $values = $request->getPost();
             $form->setInputFilter($post->getInputFilter());
             $form->setData($values);
-            if ($form->isValid()) {             
-                $values = $form->getData();
 
+            if ($form->isValid()) {
+                $values = $form->getData();
                 if ( (int) $values['id'] > 0)
                     $post = $em->find('\Admin\Entity\Post', $values['id']);
 
-                
+
                 $post->setTitulo($values['titulo']);
                 $post->setMinText($values['minText']);
                 $post->setPostComp($values['postComp']);
                 $post->setAtivo($values['ativo']);
-                $post->setUsuario($values['usuario']);
+                $post->setData(new \Datetime());
+               // var_dump($post);exit;
 
-                var_dump($post);exit;
+                $usuario = $em->find('\Admin\Entity\Usuario', 1);
+                $post->setUsuario($usuario);
+
                 $em->persist($post);
-
                 try {
                     $em->flush();
                     $this->flashMessenger()->addSuccessMessage('Post armazenado com sucesso');
                 } catch (\Exception $e) {
-                    $this->flashMessenger()->addErrorMessage('Erro ao armazenar post');
+                    $this->flashMessenger()->addErrorMessage('Erro ao armazenar post'.$e);
                 }
 
-                return $this->redirect()->toUrl('/admin/post');
+                return $this->redirect()->toUrl('/admin/posts');
+            } else {
+                var_dump($form->getMessages());exit;
             }
         }
 
