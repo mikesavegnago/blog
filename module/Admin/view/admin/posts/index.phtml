@@ -1,61 +1,6 @@
-<<<<<<< HEAD
-<buttom class="btn btn-success" onclick="location.href = '/admin/posts/save'">Novo Post</buttom>
 
-<table class="table">
-    <thead>
-        <tr>
-            <td>Id</td><td>Titulo</td><td>Min-Text</td><td>Post_Comp</td><td>Ativo</td><td>Usuario</td>
-        </tr>
-    </thead>
-    <tbody>
+<div class="wrapper">
 
-        <?php foreach ($posts as $post) {
-            ?>
-            <tr>
-                <td>
-                    <?php echo $post->getId(); ?>
-                </td>
-                <td>
-                    <?php echo $post->getTitulo(); ?>
-                </td>
-                <td>
-                    <?php echo $post->getMinText(); ?>
-                </td>
-                <td>
-                    <?php echo $post->getPostComp(); ?>
-                </td>
-                <td>
-                    <?php echo $post->getAtivo(); ?>
-                </td>
-                <td>
-
-                    <?php 
-                   // var_dump($post);exit;
-                    echo $post->getUsuario()->getNome(); ?>
-                </td> 
-                <td>
-                    <a href="/admin/posts/save/id/ <?php echo $post->getId(); ?>">Editar</a>
-                </td>
-                <td>
-                    <a href="/admin/posts/delete/id/ <?php echo $post->getId(); ?>">Excluir</a>
-                </td>
-            </tr>
-        <?php } ?>
-
-    </tbody>
-    
-    <?php
-//    echo $this->paginationCOntrol(
-//            $posts, 'sliding', 'admin/partials/paginator/paginator.phtml', array(
-//        'route' => 'posts'
-//            )
- //   );
-    ?>
-
-
-
-
-=======
 <button class="btn btn-success" onclick="location.href = '/admin/posts/save'">Novo Post</button>
 <br>
 <br>
@@ -67,25 +12,42 @@
                 <tr>
                     <td>Id</td>
                     <td>Título</td>
+                    <td>Comentarios</td>
                     <td>Editar</td>
                     <td>Excluir</td>
+                    <td>Comentar</td>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($posts as $post) {
+                    
                     ?>
                     <tr>
                         <td>
-                            <?php echo $post->getId(); ?>
+                            <?php echo $post->getId();?>
                         </td>
                         <td>
                             <?php echo $post->getTitulo(); ?>
+                        </td>
+                        <td>
+                        <?php
+                            foreach($comentarios as $comentario){
+                                 if($post->getId() == $comentario->getPost()->getId()){
+                                     var_dump ($comentario->getEmail());
+                                     var_dump ($comentario->getComentario());
+                                 }
+                             }  
+                         ?>
                         </td>
                         <td>
                             <a href="/admin/posts/save/id/<?php echo $post->getId(); ?>">Editar</a>
                         </td>
                         <td>
                             <a href="/admin/posts/delete/id/<?php echo $post->getId(); ?>">Excluir</a>
+                        </td>
+                        <td>
+                            <!-- <a href="/main/comentarios/save/id/<?php //echo $post->getId(); ?>">Comentar</a>  -->
+                            
                         </td>
                     </tr>
                 <?php }
@@ -94,4 +56,3 @@
 </table>
 </div>
 </div>
->>>>>>> ajuste de layouts
