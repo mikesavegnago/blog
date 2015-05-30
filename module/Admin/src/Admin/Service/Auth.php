@@ -65,9 +65,7 @@ class Auth extends Service {
     }
     
     
-    public funlerName.'.'.$actionName;
-        $acl = $this->getServiceManager()->get('Core\Acl\Builder')->build();
-        if($acl->isAllowed($role,$resource)){ction authorize($moduleName, $contollerName, $actionName)
+    public function authorize($moduleName, $contollerName, $actionName)
     {
         $auth= new AuthenticationService();
         $role= 'VISITANTE';
@@ -80,7 +78,7 @@ class Auth extends Service {
             else{
                $role = $session->offseGet('role');
             }
-        }
+       }
         
         $resource = $controllerName.'.'.$actionName;
         $acl = $this->getServiceManager()->get('Core\Acl\Builder')->build();
