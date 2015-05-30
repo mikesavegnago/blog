@@ -25,13 +25,7 @@
         <?php echo $form->get('perfil')->getLabel(); ?>
     </div>
     <div class="input-xlarge">
-        <?php echo $this->formSelect($form->get('role')); ?>
-    </div> 
-    <div>
-        <?php echo $form->get('perfil')->getLabel(); ?>
-    </div>
-    <div class="input-xlarge">
-        <?php echo $this->formInput($form->get('perfil')); ?>
+        <?php echo $this->formSelect($form->get('perfil')); ?>
     </div> 
     <div>
         <?php echo $form->get('login')->getLabel(); ?>
@@ -49,7 +43,7 @@
     <div class="input-group">
         <?php echo $this->formSubmit($form->get('submit')); ?>
     </div> 
-    <?php
+    <?php 
         echo $this->form()->closeTag();
     ?>
   </div>
