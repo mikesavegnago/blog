@@ -16,10 +16,7 @@ use \Main\Entity\Comentario as Comentario;
  */
 class ComentariosController extends AbstractActionController
 {
-    /**
-     * Exibe os comentarios
-     * @return void
-     */
+
     public function indexAction()
     {
          //verificar a sessao e só dar permissao de exclusao se forma dministrador
@@ -56,6 +53,7 @@ class ComentariosController extends AbstractActionController
         }
 
         return $this->redirect()->toUrl('/main');
+        
     }
 
 }
