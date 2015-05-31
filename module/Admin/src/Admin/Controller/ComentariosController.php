@@ -19,7 +19,7 @@ class ComentariosController extends AbstractActionController
 
     public function indexAction()
     {
-         //verificar a sessao e só dar permissao de exclusao se forma dministrador
+         //verificar a sessao e só dar permissao de exclusao se forma administrador
         
         $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $comentarios = $em->getRepository('\Main\Entity\Comentario')->findAll();
