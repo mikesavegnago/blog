@@ -84,10 +84,38 @@ return array(
             },
             'Admin\Service\Auth' => function($sm) {
                 $dbAdapter = $sm->get('DbAdapter');
-                return new Admin\Service\Auth($dbAdapter);
+                return new \Admin\Service\Auth($dbAdapter);
             },
         )
     ),
+    
+//    'service_manager' => array(
+//        'factories' => array(
+//            'Session' => function ($sm) {
+//                return new Zend\Session\Container('SessionAdmin');
+//            },
+//        )
+//    ),
+    
+                    
+//                    
+//    'service_manager' => array(
+//       'factories' => array(
+//           'Session' => function ($sm) {
+//               return new Zend\Session\Container('SessionAdmin');
+//           },
+//       ),
+//       'abstract_factories' => array(
+//           'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
+//           'Zend\Log\LoggerAbstractServiceFactory',
+//       ),
+//       'aliases' => array(
+//           'translator' => 'MvcTranslator',
+//       ),
+//   ),
+//                    
+                    
+                    
 
     'view_manager' => array( 
         'template_path_stack' => array(
