@@ -1,5 +1,4 @@
 <?php
-
 namespace Admin\Service;
 
 use Core\Service\Service;
@@ -7,49 +6,44 @@ use Zend\Authentication\AuthenticationService;
 use Zend\Authentication\Adapter\DbTable as AuthAdapter;
 use Zend\Db\Sql\Select;
 use Zend\Db\Sql\Sql;
-
 /**
- * Serviço de autenticacao de um usuario simples no sistema
- * 
+ * Serviço para autenticação de um usuário simples no sistema
+ *
  * @category Admin
- * @packcage Service
- * @Author Paulo Cella <paulocella@unochapeco.edu.br>
+ * @package Service
+ * @author Cezar
  */
-class Auth extends Service {
-
+class Auth extends Service
+{
     /**
      * Faz a autenticação
-     * 
-     * @params array $params
+     *
+     * @param array $params
      * @return array
      */
-    public function authentication($params) {
+    public function authenticate($params)
+    {
         if (!isset($params['email']) || !isset($params['senha'])) {
             throw new \Exception("Parâmetros inválidos");
         }
-
         $senha = md5($params['senha']);
-
         $authService = $this->getServiceManager()->get('Zend\Authentication\AuthenticationService');
         $authAdapter = $authService->getAdapter();
-        $authAdapter->setIdentityValue($params['email'])->setCredentialValue($senha);
+        $authAdapter->setIdentityValue($params['email'])
+            ->setCredentialValue($senha);
         $result = $authService->authenticate();
-
         if (!$result->isValid()) {
-            throw new Exception("Loguin ou senha inválidos");
+            throw new \Exception("Login ou senha inválidos");
         }
-
         $session = $this->getServiceManager()->get('Session');
-        $identity = $result->getIdentity();
+	$identity = $result->getIdentity();
         $session->offsetSet('user', $identity);
         $session->offsetSet('role', $identity->getRole());
-
         return true;
     }
-    
     /**
-     * Faz logout so sistema
-     * 
+     * Faz o logout do sistema
+     *
      * @return void
      */
     public function logout()
@@ -59,35 +53,31 @@ class Auth extends Service {
         $session->offsetUnset('user');
         $session->offsetUnset('role');
         $Auth->clearIdentity();
-        
         return true;
-        
     }
-    
-    
-    public function authorize($moduleName, $contollerName, $actionName)
+    /**
+     * Faz a autorização do usuário para acessar o recurso
+     * @param string $moduleName Nome do módulo sendo acessado
+     * @param string $controllerName Nome do controller
+     * @param string $actionName Nome da ação
+     * @return boolean
+     */
+    public function authorize($moduleName, $controllerName, $actionName)
     {
-        $auth= new AuthenticationService();
-        $role= 'VISITANTE';
-        if($auth->hasIdentity()){
-            
+        $auth = new AuthenticationService();
+        $role = 'VISITANTE';
+        if ($auth->hasIdentity()) {
             $session = $this->getServiceManager()->get('Session');
-            if(!$session->offsetGet('role')){
+            if (!$session->offsetGet('role'))
                 $role = 'VISITANTE';
-            }
-            else{
-               $role = $session->offseGet('role');
-            }
-       }
-        
-        $resource = $controllerName.'.'.$actionName;
+            else
+                $role = $session->offsetGet('role');
+        }
+        $resource = $controllerName . '.' . $actionName;
         $acl = $this->getServiceManager()->get('Core\Acl\Builder')->build();
-        if($acl->isAllowed($role,$resource)){
+        if ($acl->isAllowed($role, $resource)) {
             return true;
         }
         return false;
     }
-    
-    
-
 }
