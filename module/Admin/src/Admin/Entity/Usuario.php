@@ -47,9 +47,9 @@ class Usuario {
     protected $email;
 
     /**
-     * @ORM\Column (type="date")
+     * @ORM\Column (type="datetime")
      *
-     * @var string
+     * @var datetime
      */
     protected $data_nasc;
 
@@ -188,8 +188,7 @@ class Usuario {
                             array('name' => 'Int'),
                         ),
             )));
-            $inputFilter->add(
-                    $factory->createInput(array(
+            $inputFilter->add($factory->createInput(array(
                         'name' => 'login',
                         'required' => true,
                         'filters' => array(
@@ -204,8 +203,8 @@ class Usuario {
                                 'name' => 'StringLength',
                                 'options' => array(
                                     'encoding' => 'UTF-8',
-                                    'min' => '1',
-                                    'max' => '100',
+                                    'min' => 1,
+                                    'max' => 100,
                                 ),
                             ),
                         ),
@@ -223,10 +222,10 @@ class Usuario {
                             array(
                                 'name' => 'StringLength',
                                 'options' => array(
-                                    'encoding' => 'UTF-8',
-                                    'min' => '1',
-                                    'max' => '255',
-                                ),
+                                    'min' => 1,
+                                    'max' => 255,
+                                    'message' => 'O campo senha deve ter mais que 3 caracteres e menos que 255',
+                               ),
                             ),
                         ),
                     ))
@@ -271,7 +270,6 @@ class Usuario {
                             array(
                                 'name' => 'StringLength',
                                 'options' => array(
-                                    'encoding' => 'UTF-8',
                                     'min' => 3,
                                     'max' => 255,
                                     'message' => 'O campo E-mail deve ter mais que 3 caracteres e menos que 255',
@@ -290,32 +288,32 @@ class Usuario {
                             ),
                         ),
             )));
-            $inputFilter->add($factory->createInput(array(
-                        'name' => 'perfil',
-                        'required' => true,
-                        'validators' => array(
-                            array(
-                                'name' => 'NotEmpty',
-                                'options' => array('message' => 'O campo perfil não pode estar vazio')
-                            ),
-                            array(
-                                'name' => 'StringLength',
-                                'options' => array(
-                                    'encoding' => 'UTF-8',
-                                    'min' => 3,
-                                    'max' => 255,
-                                    'message' => 'O campo perfil deve ter mais que 3 caracteres e menos que 255',
-                                ),
-                            ),
-                        ),
-                        'filters' => array(
-                            array('name' => 'StripTags'),
-                            array('name' => 'StringTrim'),
-                            array('name' => 'StringToUpper',
-                                'options' => array('encoding' => 'UTF-8')
-                            ),
-                        ),
-            )));
+//            $inputFilter->add($factory->createInput(array(
+//                        'name' => 'perfil',
+//                        'required' => true,
+//                        'validators' => array(
+//                            array(
+//                                'name' => 'NotEmpty',
+//                                'options' => array('message' => 'O campo perfil não pode estar vazio')
+//                            ),
+//                            array(
+//                                'name' => 'StringLength',
+//                                'options' => array(
+//                                    'encoding' => 'UTF-8',
+//                                    'min' => 3,
+//                                    'max' => 255,
+//                                    'message' => 'O campo perfil deve ter mais que 3 caracteres e menos que 255',
+//                                ),
+//                            ),
+//                        ),
+//                        'filters' => array(
+//                            array('name' => 'StripTags'),
+//                            array('name' => 'StringTrim'),
+//                            array('name' => 'StringToUpper',
+//                                'options' => array('encoding' => 'UTF-8')
+//                            ),
+//                        ),
+//            )));
 
             $inputFilter->add($factory->createInput(array(
                         'name' => 'data_nasc',
@@ -325,7 +323,7 @@ class Usuario {
                                 'name' => 'Date',
                                 'options' => array(
                                     'message' => 'Não parece uma data válida',
-                                    'format' => 'Y-m-d'
+                                    'format' => 'd-m-Y'
                                 )
                             ),
                         ),

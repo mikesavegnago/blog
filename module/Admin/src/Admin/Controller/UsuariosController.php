@@ -49,19 +49,15 @@ class UsuariosController extends AbstractActionController
             if (!$values['perfil']) {
                 $values['perfil'] = 'VISITANTE';
             }
-            //var_dump($form);
-            $filters = $usuario->getInputFilter();
-            $form->setInputFilter($filters);
-            //var_dump($form);
+            
+            $form->setInputFilter($usuario->getInputFilter());
             $form->setData($values);
-            //var_dump($form);exit;
-            $filters->setData($values);
 
-            //tirar a negação
-            if(!$form->isValid() || $form->isValid() )  {
+            if(!$form->isValid()){
                 $values = $form->getData();
-                if ((int)$values['id'] > 0)
-                    $usuario = $em->find('\Admin\Entity\Usuario', 1);
+                $id = (int) $this->params()->fromRoute('id', 0);
+                if ($id > 0)
+                    $usuario = $em->find('\Admin\Entity\Usuario', $id);
 
                 $usuario->setEmail($values['email']);
                 $usuario->setNome($values['nome']);

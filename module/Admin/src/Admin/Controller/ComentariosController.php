@@ -29,6 +29,7 @@ class ComentariosController extends AbstractActionController
 
         return new ViewModel(
             array(
+                
                 'comentarios' => $comentarios
             )
         );
