@@ -64,9 +64,8 @@ class UsuariosController extends AbstractActionController
                 $usuario->setDataNasc(new \DateTime($values['data_nasc']));
                 $usuario->setPerfil($values['perfil']);
                 $usuario->setLogin($values['login']); 
-                $usuario->setSenha($values['senha']);
+                $usuario->setSenha(md5($values['senha']));
 
-                //var_dump($usuario);exit;
                 $em->persist($usuario);
 
                 try{
