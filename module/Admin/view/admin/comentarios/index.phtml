@@ -1,0 +1,37 @@
+
+<div class="wrapper">
+
+<button class="btn btn-success" onclick="location.href = '/admin/posts/save'">Novo Post</button>
+<br>
+<br>
+<br>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Email</td>
+                    <td>Comentario</td>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($comentarios as $comentario) {
+                    
+                    
+                    ?>
+                    <tr>
+                        <td>
+                            <?php echo $comentario->getEmail();?>
+                        </td>
+                        <td>
+                            <?php echo $comentario->getComentario(); ?>
+                        </td>
+                        <td>
+                            <a href="/admin/comentarios/delete/id/<?php echo $comentario->getId(); ?>">Excluir</a>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+</table>
+</div>
+</div>

@@ -8,6 +8,7 @@ return array(
             'Admin\Controller\Posts' => 'Admin\Controller\PostsController',
             'Admin\Controller\Index' => 'Admin\Controller\IndexController',
             'Admin\Controller\Login' => 'Admin\Controller\LoginController',
+            'Admin\Controller\Comentarios' => 'Admin\Controller\ComentariosController'
         ),
     ),
     //Configuração doctrine

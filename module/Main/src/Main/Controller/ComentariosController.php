@@ -16,7 +16,6 @@ use \Main\Entity\Comentario as Comentario;
  */
 class ComentariosController extends AbstractActionController
 {
-
     /**
      * Exibe os comentarios
      * @return void
