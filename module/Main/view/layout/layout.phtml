@@ -44,7 +44,7 @@
                         <?php $user = $this->session()->offsetGet('user'); ?>
                         <?php if ($user): ?>
                             <li><a>Bem vindo, <?php echo $user->getNome();?>.</a></li>
-                        <?php if ($user-getPerfil == 'ADMIN') { ?>
+                        <?php if ($user->getPerfil() == 'ADMIN') { ?>
                             <li><a href="/admin/index/opcoes">Menu de Opções</a></li>
                         <?php } ?>
                             <li><a href="/admin/login/logout">Clique para sair</a></li>
