@@ -23,7 +23,8 @@ class Index extends Service
         $select = $this->getObjectManager()->createQueryBuilder()->select('Post')
             ->from('Admin\Entity\Post', 'Post')
             ->where('Post.titulo like ?1 AND Post.ativo = 1')
-            ->setParameter(1, '%'.$search.'%');
+            ->setParameter(1, '%'.$search.'%')
+            ->orderBy('Post.data', 'DESC');
         return $select;
     }
     /**

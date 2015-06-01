@@ -13,8 +13,12 @@
                     <td>Id</td>
                     <td>Título</td>
                     <td>Data</td>
-                    <td>Editar</td>
-                    <td>Excluir</td>
+                    <td>Editar</td> 
+                    <?php $user = $this->session()->offsetGet('user'); ?>
+                    <?php if ($user->getPerfil() == 'ADMIN'): ?>
+                        <td>Excluir</td>
+                    <?php endif;?>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -34,9 +38,11 @@
                         <td>
                             <a href="/admin/posts/save/id/<?php echo $post->getId(); ?>">Editar</a>
                         </td>
+                        <?php if ($user->getPerfil() == 'ADMIN'): ?>
                         <td>
                             <a href="/admin/posts/delete/id/<?php echo $post->getId(); ?>">Excluir</a>
                         </td>
+                        <?php endif;?> 
                     </tr>
                 <?php } ?>
             </tbody>

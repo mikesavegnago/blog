@@ -9,7 +9,7 @@
                     <h2><?= $post->getTitulo(); ?></h2>
                     <div class="tag">
                         <p>	
-                            <span><i class="fa fa-user" data-original-title="" title=""></i> <a href="#"><?php //= $post->getUsuario()->getNome(); ?></a></span> 
+                            <span><i class="fa fa-user" data-original-title="" title=""></i> <a href="#"><?= $post->getUsuario()->getNome(); ?></a></span> 
                             <i class="fa fa-circle" data-original-title="" title=""></i> 
                             <span><i class="fa fa-calendar" data-original-title="" title=""></i> <a href="#"><?= $post->getData()->format('d/m/Y'); ?></a></span>
                             

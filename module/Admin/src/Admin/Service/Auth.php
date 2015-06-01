@@ -1,4 +1,5 @@
 <?php
+
 namespace Admin\Service;
 
 use Core\Service\Service;
@@ -11,7 +12,7 @@ use Zend\Db\Sql\Sql;
  *
  * @category Admin
  * @package Service
- * @author Cezar
+ * @author Mike
  */
 class Auth extends Service
 {
@@ -22,14 +23,14 @@ class Auth extends Service
      * @return array
      */
     public function authenticate($params)
-    {
-        if (!isset($params['email']) || !isset($params['senha'])) {
+    {       
+        if (!isset($params['login']) || !isset($params['senha'])) {
             throw new \Exception("Parâmetros inválidos");
         }
         $senha = md5($params['senha']);
         $authService = $this->getServiceManager()->get('Zend\Authentication\AuthenticationService');
         $authAdapter = $authService->getAdapter();
-        $authAdapter->setIdentityValue($params['email'])
+        $authAdapter->setIdentityValue($params['login'])
             ->setCredentialValue($senha);
         $result = $authService->authenticate();
         if (!$result->isValid()) {
@@ -38,9 +39,10 @@ class Auth extends Service
         $session = $this->getServiceManager()->get('Session');
 	$identity = $result->getIdentity();
         $session->offsetSet('user', $identity);
-        $session->offsetSet('role', $identity->getRole());
+        $session->offsetSet('role', $identity->getPerfil());
         return true;
     }
+    
     /**
      * Faz o logout do sistema
      *

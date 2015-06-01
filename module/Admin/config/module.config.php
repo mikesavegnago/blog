@@ -13,6 +13,14 @@ return array(
     ),
     //Configuração doctrine
     'doctrine' => array(
+        'authentication' => array(
+            'orm_default' => array(
+                'object_manager' => 'Doctrine\ORM\EntityManager',
+                'identity_class' => 'Admin\Entity\Usuario',
+                'identity_property' => 'login',
+                'credential_property' => 'senha',
+            ),
+            ),
         'driver' => array(
             'application_entities' => array(
                 'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
@@ -24,7 +32,9 @@ return array(
                 'drivers' => array(
                     'Admin\Entity' => 'application_entities'
                 )
-            ))),
+            ), 
+        )
+    ),
     //*********************************************************
 
     'router' => array(
@@ -79,12 +89,8 @@ return array(
     ),
     'service_manager' => array(
         'factories' => array(
-            'Session' => function($sm) {
-                return new Zend\Session\Container('Blog');
-            },
-            'Admin\Service\Auth' => function($sm) {
-                $dbAdapter = $sm->get('DbAdapter');
-                return new \Admin\Service\Auth($dbAdapter);
+            'Session' => function ($sm) {
+                return new Zend\Session\Container('SessionAdmin');
             },
         )
     ),

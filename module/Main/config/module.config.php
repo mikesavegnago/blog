@@ -122,7 +122,7 @@ return array(
     'service_manager' => array(
         'factories' => array(
             'Session' => function ($sm) {
-                return new Zend\Session\Container('SessionMain');
+                return new Zend\Session\Container('SessionAdmin');
             },
         )
     ),

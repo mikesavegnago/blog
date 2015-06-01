@@ -16,11 +16,14 @@ return array(
     'acl' => array(
         'roles' => array(
             'VISITANTE' => null,
-            'REDATOR' => 'VISITANTE',
-            'ADMIN' => 'REDATOR',
+            'EDITOR' => 'VISITANTE',
+            'ADMIN' => 'EDITOR',
         ),
         'resources' => array(
-            'Application\Controller\Index.index',
+            'Admin\Controller\Index.index',
+            'Admin\Controller\Index.opcoes',
+            'Main\Controller\Index.index',
+            'Main\Controller\Index.pagina',
             'Admin\Controller\Login.login',
             'Admin\Controller\Login.logout',
             'Admin\Controller\Usuarios.index',
@@ -35,9 +38,11 @@ return array(
         ),
         'privilege' => array(
             'VISITANTE' => array(
-                'allow' => array(
-                    'Admin\Controller\Posts.index',
-                    'Admin\Controller\Login.index',
+                'allow' => array(            
+                    'Main\Controller\Index.index',
+                    'Main\Controller\Index.pagina',
+                    'Admin\Controller\Index.index',
+                    'Admin\Controller\Posts.index', 
                     'Admin\Controller\Login.login',
                     'Admin\Controller\Login.logout',
                     'Main\Controller\Comentarios.index',
@@ -45,18 +50,20 @@ return array(
                 )
             ),
             
-            'REDATOR' => array(
+            'EDITOR' => array(
                 'allow' => array(
-                    'Admin\Controller\Posts.save',
-                    'Admin\Controller\Posts.delete'
+                    'Admin\Controller\Posts.save'
                 )
             ),
             
             'ADMIN' => array(
                 'allow' => array(
+                    'Admin\Controller\Index.opcoes',
                     'Admin\Controller\Usuarios.index',
                     'Admin\Controller\Usuarios.save',
                     'Admin\Controller\Usuarios.delete',
+                    'Admin\Controller\Posts.delete',
+                    'Main\Controller\Comentarios.delete'
                 )
             ),
         )

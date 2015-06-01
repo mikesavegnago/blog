@@ -22,13 +22,16 @@
     <div class="input-xlarge">
         <?php echo $this->formTextarea($form->get('postComp')); ?>
     </div>  
-    <div class="input-xlarge">
-        <?php echo $this->formCheckbox($form->get('ativo')); ?> <?php echo $form->get('ativo')->getLabel(); ?>
-    </div> 
+    <?php $user = $this->session()->offsetGet('user'); ?>
+    <?php if ($user->getPerfil() == 'ADMIN'): ?>
+        <div class="input-xlarge">
+            <?php echo $this->formCheckbox($form->get('ativo')); ?> <?php echo $form->get('ativo')->getLabel(); ?>
+        </div> 
+    <?php endif;?>
     <br>
     <div class="input-group">
         <?php echo $this->formSubmit($form->get('submit')); ?>
-    </div> 
+    </div>    
     <?php
         echo $this->form()->closeTag();
     ?>

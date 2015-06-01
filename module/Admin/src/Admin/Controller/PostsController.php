@@ -23,8 +23,15 @@ class PostsController extends AbstractActionController
      */
     public function indexAction()
     {
-        $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $posts = $em->getRepository('\Admin\Entity\Post')->findAll();
+        $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');  
+        $session = $this->getServiceLocator()->get('Session'); 
+        if ($session->offsetGet('role') == 'ADMIN') {
+            $posts = $em->getRepository('\Admin\Entity\Post')
+                    ->findBy(array(), array('data' => 'DESC')); 
+        } else {
+            $posts = $em->getRepository('\Admin\Entity\Post')
+                    ->findBy(array('usuario' => $session->offsetGet('user')->getId()), array('data' => 'DESC')); 
+        }
         
         return new ViewModel(
             array(
@@ -40,11 +47,15 @@ class PostsController extends AbstractActionController
     public function saveAction()
     {
         $em =  $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $session = $this->getServiceLocator()->get('Session');
         $form = new PostForm($em);
         $request = $this->getRequest();
         if ($request->isPost()) {
             $post = new Post();
             $values = $request->getPost();
+            if (!$values['ativo'] && $session->offsetGet('role') == 'EDITOR') {
+                $values['ativo'] = 1;
+            }
             $form->setInputFilter($post->getInputFilter());
             $form->setData($values);
 
@@ -61,7 +72,7 @@ class PostsController extends AbstractActionController
                 $post->setData(new \Datetime());
                // var_dump($post);exit;
 
-                $usuario = $em->find('\Admin\Entity\Usuario', 1);
+                $usuario = $em->find('\Admin\Entity\Usuario', $session->offsetGet('user')->getId());
                 $post->setUsuario($usuario);
 
                 $em->persist($post);
