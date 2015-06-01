@@ -70,11 +70,19 @@ class Post
 
     /**
      * @ORM\ManyToOne(targetEntity="Usuario")
-     * @ORM\JoinColumn(name="id_usuario", referencedColumnName="id")
+     * @ORM\JoinColumn(name="id_usuario", referencedColumnName="id" )
      *
      * @var \Admin\Entity\Usuario
      */
     protected $usuario;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="\Main\Entity\Comentario",cascade={"all"}, mappedBy="comentario" )
+     * @ORM\JoinColumn(name="id_post", referencedColumnName="id",onDelete="CASCADE" )
+     *
+     * @var \Main\Entity\Comentario
+     */
+    protected $comentario;
 
     /**
      * @return string
