@@ -42,16 +42,9 @@ class Comentario
      */
     protected $comentario;
 
-//       /**
-//     * @ORM\ManyToOne(targetEntity="\Admin\Entity\Post" ,cascade={"all"})
-//     * @ORM\JoinColumn(name="id_post", referencedColumnName="id", onDelete="CASCADE")
-//     *
-//     * @var \Admin\Entity\Post
-//     */
-
     /**
-     * @ORM\ManyToOne(targetEntity="\Admin\Entity\Post" )
-     * @ORM\JoinColumn(name="id_post", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="\Admin\Entity\Post"  )
+     * @ORM\JoinColumn(name="id_post", referencedColumnName="id" , onDelete="CASCADE" )
      *
      * @var \Admin\Entity\Post
      */
