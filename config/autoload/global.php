@@ -35,6 +35,9 @@ return array(
             'Main\Controller\Comentarios.index',
             'Main\Controller\Comentarios.save',
             'Main\Controller\Comentarios.delete',
+            'Admin\Controller\Comentarios.index',
+            'Admin\Controller\Comentarios.save',
+            'Admin\Controller\Comentarios.delete',
         ),
         'privilege' => array(
             'VISITANTE' => array(
@@ -63,7 +66,10 @@ return array(
                     'Admin\Controller\Usuarios.save',
                     'Admin\Controller\Usuarios.delete',
                     'Admin\Controller\Posts.delete',
-                    'Main\Controller\Comentarios.delete'
+                    'Main\Controller\Comentarios.delete',
+                    'Admin\Controller\Comentarios.index',
+                     'Admin\Controller\Comentarios.save',
+                    'Admin\Controller\Comentarios.delete',
                 )
             ),
         )
