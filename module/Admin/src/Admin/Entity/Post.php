@@ -75,7 +75,26 @@ class Post
      * @var \Admin\Entity\Usuario
      */
     protected $usuario;
-
+    
+    /**
+     * @ORM\OneToMany(targetEntity="\Main\Entity\Comentario", mappedBy="post", cascade={"all"})
+     *
+     */
+    protected $comentarios;
+    
+    public function __construct()
+    {
+        $this->comentarios = new ArrayCollection();
+    }
+    
+    /**
+     * @return ArrayCollection
+     */
+    public function getComentarios()
+    {
+        return $this->comentarios;
+    }
+    
 
     /**
      * @return string
