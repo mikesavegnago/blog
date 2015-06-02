@@ -54,7 +54,7 @@ class PostsController extends AbstractActionController
             $post = new Post();
             $values = $request->getPost();
             if (!$values['ativo'] && $session->offsetGet('role') == 'EDITOR') {
-                $values['ativo'] = 1;
+                $values['ativo'] = 0;
             }
             $form->setInputFilter($post->getInputFilter());
             $form->setData($values);
