@@ -4,11 +4,7 @@
         <div class="col-lg-8 col-md-8">
             <!-- start:single content -->
             <div id="main-single-content">
-                <?php foreach ($posts as $post) { ?>
-                <?php
-                    $comentarios = $em->getRepository('Main\Entity\Comentario')
-                            ->findBy(array('post' => $post->getId()));
-                ?>
+                <?php foreach ($posts as $post) { ?> 
                     <div class="content-single">
                         <h2><?= $post->getTitulo(); ?></h2>
                         <div class="tag">
@@ -20,8 +16,8 @@
                                 <span><i class="fa fa-calendar" data-original-title="" title=""></i> 
                                     <a href="#"><?= $post->getData()->format('d/m/Y'); ?></a>
                                 </span>
-                                <span><i class="fa fa-calendar" data-original-title="" title=""></i> 
-                                    <a href="#"><?php echo sizeof($comentarios) . " Comentarios"; ?></a>
+                                <span><i class="fa fa-calendar " data-original-title="" title=""></i> 
+                                    <a href="#"><?php    echo  count($post->getComentarios()). " Comentarios"; ?></a>
                                 </span>
 
                             </p>
